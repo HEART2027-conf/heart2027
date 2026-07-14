@@ -28,21 +28,23 @@ body{
     background-color: #fafafa;
     background-size: cover;
     background-attachment: fixed;
-    color: #505050; 
+    color: #505050;
     text-align:left;
-    font-family:'Roboto',sans-serif;
+    font-family:'Inter',sans-serif;
     font-size:1em;
     line-height:1.5em;
-    margin: 60px auto;
-    width: 1000px;
+    margin: 0 auto 60px auto;  /* 上の余白だけ0に、下は60pxのまま残す */
+    max-width: 1000px;
+    width: 100%;  /* 画面幅が1000px未満の場合は画面幅に合わせる（ナビの幅計算とズレないようにする） */
+    overflow-x: hidden;  /* 100vwとスクロールバー幅の誤差によるはみ出しを隠す */
 }
 
 a{color: #b8860b; text-decoration:none;}
 a.current{color: #52739e;}
-a.current:hover{color: #e82945;}
-a:hover{color: #b2132e;}
+a.current:hover{color: #5c7cae;}
+a:hover{color: #5c7cae;}
 a:active{color: #e82945;}
-h1,h2,h3,h4{clear:left; color: #813c54; margin:1.5em 0em 1em 0em; font-family:'Roboto Slab',serif; text-shadow: 1px 1px 2px #d0d0d0;}
+h1,h2,h3,h4{clear:left; color: #1b263b; margin:1.5em 0em 1em 0em; font-family:'Cambria',serif; text-shadow: 1px 1px 2px #d0d0d0;}
 h1{font-size:2.67em;}
 h2{font-size:2.00em;}
 h3{font-size:1.67em;}
@@ -76,19 +78,182 @@ th,td{
     /*border: 1px solid black;*/
 }
 
+/* 最上部ナビゲーション：紺色の帯は画面幅いっぱい */
+.nav-bar {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background-color: #0d1b2a;
+}
+
+/* リンク自体は他のコンテンツと同じ幅（1000px）に収めて中央寄せ */
+.nav-bar table.navigation {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.nav-bar td.navigation {
+    padding: 16px 0;
+}
+
+.nav-bar a {
+    color: #fafafa;
+}
+
+.nav-bar a.current {
+    color: #b8860b;
+}
+
+.nav-bar a:hover {
+    color: #5c7cae;
+}
+
+/* Important Dates: 目立たせるための紺色の帯（画面幅いっぱい） */
+.important-dates {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background-color: #0d1b2a;
+    padding: 8px 0 32px 0;
+}
+
+.important-dates-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 20px;
+    color: #fafafa;
+    text-align: center;
+}
+
+.important-dates-inner h2 {
+    color: #fafafa;
+    text-shadow: none;
+}
+
+table.dates {
+    width: 100%;
+    margin: 16px auto 8px auto;
+}
+
+table.dates td {
+    padding: 14px 12px;
+    font-size: 1.25em;
+    border-bottom: 1px solid rgba(250, 250, 250, 0.2);
+    text-align: left;
+}
+
+table.dates tr:last-child td {
+    border-bottom: none;
+}
+
+table.dates td.date-label {
+    color: #fafafa;
+    font-weight: bold;
+}
+
+table.dates td.date-value {
+    color: #d4af37;
+    font-weight: bold;
+    text-align: right;
+    white-space: nowrap;
+}
+
+p.dates-note {
+    font-size: 0.85em;
+    color: #cbd5e1;
+    width: auto;
+}
+
+/* Organizing Committee */
+table.committee {
+    margin: 16px auto 24px auto;
+}
+
+table.committee td {
+    padding: 10px 12px;
+    font-size: 1.1em;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+table.committee tr:last-child td {
+    border-bottom: none;
+}
+
+table.committee td.role {
+    font-weight: bold;
+    color: #1b263b;
+    width: 35%;
+}
+
+table.committee td.person {
+    text-align: left;
+    color: #505050;
+}
+
+table.committee td.person .name {
+    display: block;
+    font-weight: bold;
+    color: #1b263b;
+}
+
+table.committee td.person .affiliation {
+    display: block;
+    font-size: 0.85em;
+    color: #757575;
+}
+
+/* Steering Committee (and other multi-person rows): grid of members */
+table.committee td.person-list {
+    text-align: left;
+    color: #505050;
+}
+
+table.committee .member-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+table.committee .member-grid .member .name {
+    display: block;
+    font-weight: bold;
+    color: #1b263b;
+}
+
+table.committee .member-grid .member .affiliation {
+    display: block;
+    font-size: 0.85em;
+    color: #757575;
+}
+
 /* Website Banner */
-.banner {position: relative; font-family:'Roboto Slab',serif;}
+.banner {position: relative; font-family:'Cambria',serif; height: 400px;}
 .top-left {font-size:5.33em; color: #505050; background: #fafafa; text-align: center; width: 1000px; height: 67px; position: absolute; padding: 36px 0 0 0; top: 0px;}
-.bottom-right {font-size:2.33em; color: #fafafa; line-height: 1.5em; width: auto; height: 100px; padding: 0px 27px 27px 0px; text-align: right; position: absolute; bottom: 0px; right: 0px; text-shadow: 0px 0px 6px #000000;}
+.bottom-right {font-size:2.33em; color: #fafafa; line-height: 1.5em; width: auto; padding: 10px 27px 10px 20px; text-align: right; position: absolute; bottom: 0px; right: 0px; background-color: rgba(13, 27, 42, 0.7); text-shadow: 0px 0px 4px #000000;}
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;     /* 縦横比を保ったまま隙間なく埋める（はみ出た分は自動トリミング） */
+    display: block;
+}
 
 /* Conference Title Logo */
-.title1{color: #b2132e; text-shadow: 1px 1px 3px #c0c0c0;} 
-.title2{color: #52739e; text-shadow: 1px 1px 3px #c0c0c0;}
+.title1{color: #0d1b2a; text-shadow: 1px 1px 3px #c0c0c0;} 
+.title2{color: #415a77; text-shadow: 1px 1px 3px #c0c0c0;}
 .year{color: #505050; font-size:0.67em; font-weight: lighter;}
 
 /* Navigation Links (Home, Registration, etc) */
 table.navigation{width:800px;}
-td.navigation{font-size:1.67em; white-space:nowrap; width:20%; text-align:center; vertical-align:middle; padding:0px 0px 0px 0px;}
+td.navigation{font-size:1.2em; white-space:nowrap; width:20%; text-align:center; vertical-align:middle; padding:0px 0px 0px 0px;}
 
 /* Sponsor Images */
 table.sponsors{width:800px;}
@@ -123,7 +288,10 @@ footer{font-size:0.875em; margin-top:12em; text-align:center;}
     p{font-size:1.5em; line-height:1.5em;}
     th,td,tr{font-size:1.5em; line-height:1.5em;}
     td.date{font-size:1em; padding-top:0.5em;}
-    td.navigation{font-size:1.5em; padding:0px 20px 0px 20px;}
+    td.navigation{font-size:1.2em; padding:0px 20px 0px 20px;}
     table.footer{font-size:0.33em;}
 }
 
+table.navigation a {
+    font-family: 'Cambria', sans-serif;
+}
